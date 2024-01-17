@@ -19,3 +19,17 @@ const sub: MathFunction = function (a, b) {
   return a - b;
 };
 console.log(sub(150, 30));
+
+//optional Parameters of a Functions
+const addParamsFn = (a: number, b: number, c?: number): number => {
+  if (c) {
+    return a + b + c;
+  }
+  return a + b;
+};
+
+//default params values
+const sumParamsFn = (a: number, b: number, c: number = 100): number => {
+  return a + b + c;
+};
+console.log("values", sumParamsFn(10, 3));
