@@ -32,4 +32,40 @@ const addParamsFn = (a: number, b: number, c?: number): number => {
 const sumParamsFn = (a: number, b: number, c: number = 100): number => {
   return a + b + c;
 };
-console.log("values", sumParamsFn(10, 3));
+console.log("values", sumParamsFn(10, 3, undefined));
+
+//Rest params
+const subFn = (a: string, ...nums: number[]) => {
+  return a + nums.reduce((Acc, currItem) => Acc + currItem);
+};
+console.log(subFn("Hello", 20, 30));
+
+//never type
+const neverFn = (errorMsg: string) => {
+  throw new Error(errorMsg);
+};
+const infiniteFn = (): number => {
+  let i: number = 0;
+  while (true) {
+    i++;
+    if (i > 100) break;
+  }
+  return i;
+};
+try {
+  neverFn("This is an error");
+} catch (error: any) {
+  console.log(error.message);
+}
+//custom type guard
+const isNumber = (a: any): boolean => {
+  return a == "number" ? true : false;
+};
+//when to use never
+const numOrStr = (value: string | number): string => {
+  let val = new Error("hello");
+  if (typeof value == "string") return "string";
+  if (isNumber(value)) return "number";
+  return "This is a explicit error";
+};
+console.log(numOrStr(10))
